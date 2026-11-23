@@ -165,12 +165,12 @@ export function swapThenDeposit(
       };
     }, "swap"),
     new TransactionItem(async () => {
-      const quoteOutAmount = client.contextUpdates.jupSwap?.outAmount;
+      const quoteOutAmount = client.contextUpdates.jupSwap?.otherAmountThreshold;
       return {
         tx: transactionBuilder().add(
           client.protocolInteractionIx({
             __kind: "Deposit",
-            fields: [BigInt(Math.round(parseInt(quoteOutAmount!) * 0.995))],
+            fields: [BigInt(quoteOutAmount!)],
           })
         ),
       };
