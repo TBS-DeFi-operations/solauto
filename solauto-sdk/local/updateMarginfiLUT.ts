@@ -71,6 +71,10 @@ async function addImfiAccounts() {
         LOOKUP_TABLE_ADDRESS
       );
     } else {
+      await updateLookupTable(
+        emptyAccs.map((x) => x.publicKey.toString()),
+        LOOKUP_TABLE_ADDRESS
+      );
       for (let i = 0; i < iMfiAccountsPerGrp - emptyAccs.length; i++) {
         console.log("Creating Imfi account for group:", group);
         const iMfiAccountKeypair = umi.eddsa.generateKeypair();
